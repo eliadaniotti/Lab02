@@ -8,6 +8,7 @@ package it.polito.tdp.alien;
 
 import java.net.URL;
 import java.util.ResourceBundle;
+import java.util.StringTokenizer;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -30,18 +31,39 @@ public class AlienController {
     @FXML
     private Button btnReset;
     
+    private Dictionary dizionario;
+    
     @FXML
-	void handleNuovaParola(ActionEvent event) {
+    void doTranslate(ActionEvent event) {
+    	txtResult.clear();
+    	txtWord.clear();
     	String s = txtWord.getText();
-    	if(s.contains(" ")) {
-    		
+    	StringTokenizer st = new StringTokenizer(s, " ");
+    	
+    	String alienWord = st.nextToken();
+    	String translation = st.nextToken();
+    	
+    	if(translation!=null) {
+    		if (!alienWord.matches("[a-zA-Z]*") || !translation.matches("[a-zA-Z]*")) {
+    			txtResult.setText("Inserisci solo lettere");
+    		}
+    		else {
+    			dizionario.addWord(alienWord, translation);
+    			txtResult.setText(alienWord + " " + translation);
+    		}
     	}
+    	else {
+    		dizionario.translate(alienWord);
+    	}    	
     }
     
     @FXML
-    void handleTraduzione(ActionEvent event) {
-    	
+    void doReset(ActionEvent event) {
+    	txtResult.clear();
+    	txtWord.clear();
+    	dizionario.resetDictionary();
     }
+  
     
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
@@ -51,17 +73,4 @@ public class AlienController {
     	assert btnReset != null : "fx:id=\"btnReset\" was not injected: check your FXML file 'Alien.fxml'.";
     	
     }
-  
-    
-    @FXML
-    void doTranslate(ActionEvent event) {
-    	    	
-    }
-    
-    
-    @FXML
-    void doReset(ActionEvent event) {
-
-    }
-    
 }
