@@ -29,7 +29,19 @@ public class AlienController {
     private Button btnTranslate;
     @FXML
     private Button btnReset;
-        
+    
+    @FXML
+	void handleNuovaParola(ActionEvent event) {
+    	String s = txtWord.getText();
+    	if(s.contains(" ")) {
+    		
+    	}
+    }
+    
+    @FXML
+    void handleTraduzione(ActionEvent event) {
+    	
+    }
     
     @FXML // This method is called by the FXMLLoader when initialization is complete
     void initialize() {
