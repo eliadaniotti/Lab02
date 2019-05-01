@@ -4,8 +4,6 @@ package it.polito.tdp.alien;
  * Sample Skeleton for 'Alien.fxml' Controller Class
  */
 
-
-
 import java.net.URL;
 import java.util.ResourceBundle;
 import java.util.StringTokenizer;
@@ -37,11 +35,13 @@ public class AlienController {
     void doTranslate(ActionEvent event) {
     	txtResult.clear();
     	txtWord.clear();
-    	String s = txtWord.getText();
+    	String s = txtWord.getText().toLowerCase();
     	StringTokenizer st = new StringTokenizer(s, " ");
     	
     	String alienWord = st.nextToken();
-    	String translation = st.nextToken();
+    	String translation = null;
+    	if(st.hasMoreTokens())
+    		translation=st.nextToken();
     	
     	if(translation!=null) {
     		if (!alienWord.matches("[a-zA-Z]*") || !translation.matches("[a-zA-Z]*")) {
@@ -49,7 +49,7 @@ public class AlienController {
     		}
     		else {
     			dizionario.addWord(alienWord, translation);
-    			txtResult.setText(alienWord + " " + translation);
+    			txtResult.setText("Aggiunta: " + alienWord + " " + translation);
     		}
     	}
     	else {
