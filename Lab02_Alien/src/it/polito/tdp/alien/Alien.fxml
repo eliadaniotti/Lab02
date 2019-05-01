@@ -29,7 +29,7 @@
                         <Insets right="10.0" />
                      </padding>
                   </Label>
-                  <TextField prefHeight="25.0" prefWidth="263.0">
+                  <TextField fx:id="txtWord" prefHeight="25.0" prefWidth="263.0" promptText="Insert text">
                      <HBox.margin>
                         <Insets right="10.0" />
                      </HBox.margin>
@@ -44,7 +44,7 @@
                   <Insets top="15.0" />
                </padding>
             </HBox>
-            <TextArea prefHeight="200.0" prefWidth="200.0" />
+            <TextArea fx:id="txtResult" prefHeight="200.0" prefWidth="200.0" />
             <Button fx:id="btnReset" mnemonicParsing="false" onAction="#doReset" prefHeight="25.0" prefWidth="63.0" text="Reset">
                <VBox.margin>
                   <Insets left="430.0" top="15.0" />

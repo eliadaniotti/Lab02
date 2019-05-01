@@ -29,7 +29,7 @@ public class AlienController {
     @FXML
     private Button btnReset;
     
-    private Dictionary dizionario;
+    private Dictionary dizionario = new Dictionary();
     
     @FXML
     void doTranslate(ActionEvent event) {
@@ -38,22 +38,26 @@ public class AlienController {
     	String s = txtWord.getText().toLowerCase();
     	StringTokenizer st = new StringTokenizer(s, " ");
     	
-    	String alienWord = st.nextToken();
+    	String Word = st.nextToken();
     	String translation = null;
     	if(st.hasMoreTokens())
     		translation=st.nextToken();
     	
     	if(translation!=null) {
-    		if (!alienWord.matches("[a-zA-Z]*") || !translation.matches("[a-zA-Z]*")) {
+    		if (!Word.matches("[a-zA-Z]*") || !translation.matches("[a-zA-Z]*")) {
     			txtResult.setText("Inserisci solo lettere");
     		}
     		else {
-    			dizionario.addWord(alienWord, translation);
-    			txtResult.setText("Aggiunta: " + alienWord + " " + translation);
+    			dizionario.addWord(Word, translation);
+    			txtResult.setText("Aggiunta: " + Word + " " + translation);
     		}
     	}
     	else {
-    		dizionario.translate(alienWord);
+    		String traduzione = dizionario.translate(Word);
+    		if(traduzione==null)
+    			txtResult.setText("Parola non presente nel dizionario");
+    		else
+    			txtResult.setText("La traduzione è : " + traduzione);
     	}    	
     }
     
